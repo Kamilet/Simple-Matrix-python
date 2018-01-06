@@ -17,6 +17,7 @@ Please use Numpy for more complex situation!
 
 # ########################## Information ################################
 # bug report: https://github.com/Kamilet/Simple-Matrix-python
+# document: https://github.com/Kamilet/Simple-Matrix-python#cn_sm_gen
 # email: hi@kmailet.cn
 
 __author__ = 'Kamilet <hi@kamilet.cn>'
