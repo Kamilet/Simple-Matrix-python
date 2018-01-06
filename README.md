@@ -1,6 +1,6 @@
 # Simple-Matrix-python
 A lightweight module for simple Matrix operation. Simple and easy to use.  
-轻量级的简单矩阵处理模块，使用起来比较方便。
+轻量级的简单矩阵处理模块，使用起来比较方便。  
 
 + English Documentation [Jump](#English-Documentation)
 + 简体中文使用指南 [转到](#简体中文使用指南)
@@ -9,16 +9,16 @@ A lightweight module for simple Matrix operation. Simple and easy to use.
 
 # English Documentation
 
-Thanks for checking this module.
-It's my first one. Hopefully it's useful for you.
-**1 Class** and **20 functions** are in this module,
-which will help you with basic opreations on Matrixs.
+Thanks for checking this module.  
+It's my first one. Hopefully it's useful for you.  
+**1 Class** and **20 functions** are in this module,  
+which will help you with basic opreations on Matrixs.  
 
 >Please remember: All numbers of rows and columns start from ZERO.
 >So a matrix 'A' with m rows and n columns,
 >the last item should be 'A\[m-1\]\[n-1\]'.
 
-Here are introductions for all functions:
+Here are introductions for all functions:  
 
 ## Index
 
@@ -104,15 +104,15 @@ Return a new matrix(list).
 ```python
 def sm_check(matrix):
 ```
-Check if every rows are in same length.
-If True, return a tuple as (row, column), you can use as bool.
+Check if every rows are in same length.  
+If True, return a tuple as (row, column), you can use as bool.  
 
 #### Number check
 ```python
 def sm_numcheck(matrix):
 ```
-Check if all items are numbers. Run a sm_check() automatically. 
-Return True or false.
+Check if all items are numbers. Run a sm_check() automatically.   
+Return True or false.  
 
 #### Convert to numbers
 ```python
@@ -148,7 +148,7 @@ Return a new matrix(list).
 ```python
 def sm_trans(matrix):
 ```
-Exchange lines and columns.
+Exchange lines and columns.  
 Return a new matrix(list).
 
 #### Matrix conjugate
@@ -304,8 +304,8 @@ Try to fin a segment that repeats, such as \['4','4','4'\] in any direction!
     + False - Return True if find one
     + True - Return (row, column) as the start point of first match
 
-You should know a game called Gobang,
-this function can be used to determine the outcome.
+You should know a game called Gobang,  
+this function can be used to determine the outcome.  
 Of course, Othello is also ok.
 
 #### Matrix trace
@@ -325,7 +325,7 @@ def sm_sum(\*matrixs, force=False):
 + matrixs - can be two or more matrixs
 + force
     + True - Set '' or SPACE to 0
-Error occurs with violated algorithm.
+Error occurs with violated algorithm.  
 Return a new matrix(list).
 
 #### Subtraction
@@ -336,7 +336,7 @@ def sm_minus(matrix_1, matrix_2, force=False):
 + matrixs_2 - second matrix
 + force
     + True - Set '' or SPACE to 0
-Error occurs with violated algorithm.
+Error occurs with violated algorithm.  
 Return a new matrix(list).
 
 #### Multiplication with matrixs and numbers
@@ -346,7 +346,7 @@ def sm_multis(\*matrixs_or_numbers, force=False):
 + matrixs - can be two or more matrixs and numbers
 + force
     + True - Set '' or SPACE to 0
-Error occurs with violated algorithm.
+Error occurs with violated algorithm.  
 Return a new matrix(list, even only one number).
 
 #### Multiply
@@ -355,7 +355,7 @@ def sm_multi_mm(matrix_1, matrix_2):
 ```
 + matrixs_1 - first matrix
 + matrixs_2 - second matrix
-Error occurs with violated algorithm. Use sm_number() if you need.
+Error occurs with violated algorithm. Use sm_number() if you need.  
 Return a new matrix(list, even only one number).
 
 #### Multiply with number
@@ -364,7 +364,7 @@ def sm_multi_mn(matrix, number):
 ```
 + matrixs_1 - first matrix
 + matrixs_2 - anumber
-Use sm_number() if you need.
+Use sm_number() if you need.  
 Return a new matrix(list).
 
 ***
@@ -468,7 +468,7 @@ def sm_copy(matrix):
 def sm_check(matrix):
 ```
 检查每行的长度是否相等。  
-如果是，返回行数和列数（元组），也可以用做True。
+如果是，返回行数和列数（元组），也可以用做True。  
 如果否，返回False。
 
 #### 数字检查
@@ -518,7 +518,7 @@ def sm_abs(matrix):
 ```python
 def sm_trans(matrix):
 ```
-交换行和列。
+交换行和列。  
 返回新矩阵（列表）。
 
 #### 矩阵共轭
@@ -675,7 +675,7 @@ def inverse(self):
 ```python
 def find(self, string:str='', length=2, direct='all', echo=False):
 ```
-将矩阵看作一个棋盘，在棋盘上寻找“连珠”的元素。
+将矩阵看作一个棋盘，在棋盘上寻找“连珠”的元素。  
 找到一个后或找不到函数将返回结束。
 + string - 被寻找的元素，为空则寻找任意连续出现的元素
 + length - 元素的长度，五子棋的话设置为5
@@ -717,7 +717,7 @@ def sm_sum(\*matrixs, force=False):
 + matrixs - 接受的矩阵，可以为2个以上
 + force
     + True - 矩阵内的空格和字母会被作为0强制处理
-输入的矩阵不符合相加规则会出错。
+输入的矩阵不符合相加规则会出错。  
 返回新矩阵（列表）。
 
 #### 两矩阵相减
@@ -729,7 +729,7 @@ def sm_minus(matrix_1, matrix_2, force=False):
 + matrixs_2 - 作为减数的矩阵
 + force
     + True - 矩阵内的空格和字母会被作为0强制处理
-输入的矩阵不符合相加规则会出错。
+输入的矩阵不符合相加规则会出错。  
 返回新矩阵（列表）。
 
 #### 可包含纯数字的多矩阵相乘
@@ -740,7 +740,7 @@ def sm_multis(\*matrixs_or_numbers, force=False):
 + matrixs - 接受的矩阵或数字，可以为2个以上
 + force
     + True - 矩阵内的空格和字母会被作为0强制处理
-输入的矩阵不符合相乘规则会出错。
+输入的矩阵不符合相乘规则会出错。  
 返回新矩阵（列表，即便是相乘得到数字，也会返回1x1的列表）。
 
 #### 两矩阵相乘
@@ -750,7 +750,7 @@ def sm_multi_mm(matrix_1, matrix_2):
 ```
 + matrixs_1 - 作为被乘数的矩阵
 + matrixs_2 - 作为乘数的矩阵
-输入的矩阵不符合相乘规则会出错，不能出现非数字，如需要请主动调用sm_number()。
+输入的矩阵不符合相乘规则会出错，不能出现非数字，如需要请主动调用sm_number()。  
 返回新矩阵（列表，即便是相乘得到数字，也会返回1x1的列表）。
 
 #### 矩阵和数字相乘
@@ -760,5 +760,5 @@ def sm_multi_mn(matrix, number):
 ```
 + matrixs_1 - 作为被乘数的矩阵
 + matrixs_2 - 作为乘数的数字
-矩阵里不能出现非数字，如需要请主动调用sm_number()。
+矩阵里不能出现非数字，如需要请主动调用sm_number()。  
 返回新矩阵（列表）
