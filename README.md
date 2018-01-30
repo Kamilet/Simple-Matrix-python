@@ -37,7 +37,7 @@ Here are introductions for all functions:
     + **Matrix transpose**: [sm_trans()](#matrix-transpose)
     + Matrix conjugate: [sm_conj()](#matrix-conjugate)
     + Matrix conjugate transpose: [sm_con_trans()](#matrix-conjugate-transpose)
-    + **Determinant**: [sm_det()](#determinant) **2018-01-30 ERROR, NEED TO BE FIXED**
+    + **Determinant**: [sm_det()](#determinant)
     + **Inverse Matrix** : [sm_inverse()](#inverse-Matrix)
     + **Algebraic Remainder**: [sm_alge()](#algebraic-Remainder)
 + Class Smartix()
@@ -396,7 +396,7 @@ Return a new matrix(list).
     + **矩阵转置**: [sm_trans()](#矩阵转置)
     + 矩阵共轭: [sm_conj()](#矩阵共轭)
     + 矩阵共轭转置: [sm_con_trans()](#矩阵共轭转置)
-    + **行列式运算**: [sm_det()](#行列式运算) **2018-01-30 ERROR, NEED TO BE FIXED**
+    + **行列式运算**: [sm_det()](#行列式运算)
     + **逆矩阵** : [sm_inverse()](#逆矩阵)
     + **代数余子式**: [sm_alge()](#代数余子式)
 + 类Smartix下的函数

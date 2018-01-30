@@ -167,7 +167,7 @@ def sm_str(matrix):
 def sm_trans(matrix):
     '''Transpose'''
     _row, _colume = sm_check(matrix)
-    new_matrix = sm_gen(_colume,_row)
+    new_matrix = sm_gen(_colume, _row)
     for _r in range(_row):
         for _c in range(_colume):
             new_matrix[_c][_r] = matrix[_r][_c]
@@ -181,7 +181,8 @@ def sm_conj(matrix):
     for _r in range(_row):
         for _c in range(_colume):
             if matrix[_r][_c].imag != 0:
-                new_matrix[_r][_c] = matrix[_r][_c].real - matrix[_r][_c].imag * 1j
+                new_matrix[_r][_c] = matrix[_r][
+                    _c].real - matrix[_r][_c].imag * 1j
             else:
                 new_matrix[_r][_c] = matrix[_r][_c].real
     return new_matrix
@@ -190,35 +191,31 @@ def sm_conj(matrix):
 def sm_con_trans(matrix):
     '''Conjugation transpose'''
     _row, _colume = sm_check(matrix)
-    new_matrix = sm_gen(_colume,_row)
+    new_matrix = sm_gen(_colume, _row)
     for _r in range(_row):
         for _c in range(_colume):
             if matrix[_r][_c].imag != 0:
-                new_matrix[_c][_r] = matrix[_r][_c].real - matrix[_r][_c].imag * 1j
+                new_matrix[_c][_r] = matrix[_r][
+                    _c].real - matrix[_r][_c].imag * 1j
             else:
                 new_matrix[_c][_r] = matrix[_r][_c].real
     return new_matrix
 
 
-def sm_det(matrix, force=False):
-    '''Determinant, return a number
-    set force=True to calculate even row != column'''
+def sm_det(matrix):
+    '''Determinant, return a number'''
     _row, _colume = sm_check(matrix)
-    new_matrix = sm_number(sm_copy(matrix))
     _det = 0
-    if not (force or _row == _colume) or not sm_numcheck(matrix):
+    if not _row == _colume or not sm_numcheck(matrix):
         assert False, 'Error: Your matrix is illegal for Det(A)'
-    if _row == 2:
-        _det = matrix[1][1] * matrix[0][0] - matrix[0][1] * matrix[1][0]
+    if _row == 1 and _colume == 1:
+        return matrix[0][0]
+    else:
+        _det = 0
+        for i in range(_row):
+            n = [[row[a] for a in range(_row) if a != i] for row in matrix[1:]]
+            _det += matrix[0][i] * sm_det(n) * (-1) ** (i % 2)
         return _det
-    for _r in range(_colume):
-        _temp1 = 1
-        _temp2 = 1
-        for _c in range(_row):
-            _temp1 *= new_matrix[_c][(_r+_c)%_colume]
-            _temp2 *= new_matrix[_c][(_r-_c)%_colume]
-        _det = _det + _temp1 - _temp2
-    return _det
 
 
 def sm_inverse(matrix):
@@ -236,7 +233,7 @@ def sm_inverse(matrix):
     return new_matrix
 
 
-def sm_alge(matrix, row:int , colume:int):
+def sm_alge(matrix, row: int, colume: int):
     '''algebraic cofactor'''
     _row, _colume = sm_check(matrix)
     new_matrix = sm_gen(_row-1, _colume-1)
@@ -252,6 +249,7 @@ def sm_alge(matrix, row:int , colume:int):
 
 class Smatrix:
     '''handdel a single matrix'''
+
     def __init__(self, matrix, allnumber=False):
         '''an error check will run automaticlly'''
         self.matrix = matrix
@@ -356,7 +354,7 @@ class Smatrix:
         '''Inverse matrix'''
         return sm_inverse(self.matrix)
 
-    def find(self, string:str='', length=2, direct='all', echo=False):
+    def find(self, string: str='', length=2, direct='all', echo=False):
         '''scan the matrix and find a cut with given length.
         set string to:
         - any string: scan for it
@@ -379,10 +377,10 @@ class Smatrix:
         _row = len(self.matrix)
         _colume = len(self.matrix[0])
         new_matrix = sm_str(self.matrix)
-        if (_row < length and direct in ['all','a','row','r','oblique','o','rc','cr'])\
-           or (_colume < length and direct in ['all','a','colume','c','oblique','o','rc','cr']):
+        if (_row < length and direct in ['all', 'a', 'row', 'r', 'oblique', 'o', 'rc', 'cr'])\
+           or (_colume < length and direct in ['all', 'a', 'colume', 'c', 'oblique', 'o', 'rc', 'cr']):
             assert False, 'Length of cut cannot longer than length of scan area!'
-        if direct in ['all','a','row','r','rc','cr']:
+        if direct in ['all', 'a', 'row', 'r', 'rc', 'cr']:
             # scan in row
             # 纯行扫描
             for _r in range(_row):
@@ -396,10 +394,10 @@ class Smatrix:
                             break
                     if flag:
                         if echo:
-                            return _r,_scan
+                            return _r, _scan
                         else:
                             return True
-        if direct in ['all','a','colume','c','rc','cr']:
+        if direct in ['all', 'a', 'colume', 'c', 'rc', 'cr']:
             # scan in colume
             for _r in range(_row - length + 1):
                 for _scan in range(_colume):
@@ -412,13 +410,13 @@ class Smatrix:
                             break
                     if flag:
                         if echo:
-                            return _r,_scan
+                            return _r, _scan
                         else:
                             return True
         if direct in ['all', 'a', 'oblique', 'o']:
             # scan in oblique
             # direction \ first
-            for _r in range(_row - length +1):
+            for _r in range(_row - length + 1):
                 for _c in range(_colume - length + 1):
                     if string != '' and string != new_matrix[_r][_c]:
                         continue
@@ -429,13 +427,13 @@ class Smatrix:
                             break
                     if flag:
                         if echo:
-                            return _r,_c
+                            return _r, _c
                         else:
                             return True
             # direction / second
             # sure can put \ and / in same cycle, but too hard to read
             # especially when we need check flag and echo
-            for _r in range(_row - length +1):
+            for _r in range(_row - length + 1):
                 for _c in range(length - 1, _colume):
                     if string != '' and string != new_matrix[_r][_c]:
                         continue
@@ -446,7 +444,7 @@ class Smatrix:
                             break
                     if flag:
                         if echo:
-                            return _r,_c
+                            return _r, _c
                         else:
                             return True
         return False
@@ -501,7 +499,8 @@ def sm_multis(*matrixs_or_numbers, force=False):
         elif type(_item) is int or type(_item) is float or type(_item) is complex:
             # changed for plural
             numbers *= _item
-        else: assert False, 'Type of arguments must be list or int or float or complex!'
+        else:
+            assert False, 'Type of arguments must be list or int or float or complex!'
     new_matrix = sm_copy(matrixs[0])
     for _i in range(1, len(matrixs)):
         new_matrix = sm_multi_mm(new_matrix, matrixs[_i])
@@ -518,7 +517,7 @@ def sm_multi_mm(matrix_1, matrix_2):
         for new_column in range(len(matrix_2[0])):
             for _n in range(_length):
                 new_matrix[new_row][new_column] +=\
-                matrix_1[new_row][_n] * matrix_2[_n][new_column]
+                    matrix_1[new_row][_n] * matrix_2[_n][new_column]
     return new_matrix
 
 
